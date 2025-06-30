@@ -22,8 +22,6 @@ flowchart TD
 ## Análise de usabilidade
 # Análise de Usabilidade
 
-## Projeto: pdi_generator
-
 ### 1. Navegação e Fluxo de Usuário
 
 - A navegação é linear, baseada em páginas sequenciais (ex.: perguntas do PDI).
