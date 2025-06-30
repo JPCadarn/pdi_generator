@@ -6,7 +6,7 @@ O objetivo do projeto é gerar um PDI a partir de uma série de perguntas simple
 ## Fluxos de interação
 
 ```mermaid
-flowchart TD
+flowchart LR
     A[Início do App] --> B[Bot envia 1ª pergunta]
     B --> C[Usuário responde]
     C --> D[Bot envia próxima pergunta]
