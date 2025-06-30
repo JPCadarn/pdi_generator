@@ -16,8 +16,8 @@ class _HomePageState extends State<HomePage> {
     Chats(),
   ];
   final List<NavigationDrawerDestination> _drawerDestinations = [
-    NavigationDrawerDestination(icon: Icon(Icons.psychology), label: Text('Gerar PDI')),
-    NavigationDrawerDestination(icon: Icon(Icons.list), label: Text('Visualizar PDIs')),
+    NavigationDrawerDestination(icon: Icon(Icons.flag), label: Text('Gerar PDI')),
+    NavigationDrawerDestination(icon: Icon(Icons.history), label: Text('Visualizar PDIs')),
   ];
   int _selectedIndex = 0;
   
