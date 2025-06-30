@@ -4,7 +4,6 @@ import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:hive/hive.dart';
 import 'package:pdi_generator/pdi.dart';
-import 'package:pdi_generator/pergunta_lista.dart';
 import 'package:uuid/uuid.dart';
 
 class MyChat extends StatefulWidget {
@@ -18,9 +17,9 @@ class MyChatState extends State<MyChat> {
   final _chatController = InMemoryChatController();
   final _botUser = 'bot';
   final _humanUser = 'user1';
-  late List<TextMessage> _perguntas = [];
-  List<String> _respostas = [];
-  int _contadorPerguntas = 0;
+  late final List<TextMessage> _perguntas = [];
+  final List<String> _respostas = [];
+  final int _contadorPerguntas = 0;
 
   @override
   void dispose() {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
-import 'package:pdi_generator/my_chat.dart';
 import 'package:pdi_generator/pdi.dart';
 
 class Chats extends StatefulWidget {

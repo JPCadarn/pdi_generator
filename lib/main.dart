@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:pdi_generator/home_page.dart';
-import 'package:pdi_generator/my_chat.dart';
 import 'package:pdi_generator/pdi.dart';
 
 Future<void> main() async {
