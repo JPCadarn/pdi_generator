@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chat_core/flutter_chat_core.dart';
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
+import 'package:hive/hive.dart';
+import 'package:pdi_generator/pdi.dart';
 import 'package:pdi_generator/pergunta_lista.dart';
 import 'package:uuid/uuid.dart';
 
@@ -86,7 +88,7 @@ class MyChatState extends State<MyChat> {
     final buffer = StringBuffer();
 
     for(int i = 0; i < _respostas.length; i++) {
-      buffer.writeln('Pergunta: ${_perguntas[i]}');
+      buffer.writeln('Pergunta: ${_perguntas[i].text}');
       buffer.writeln('Resposta: ${_respostas[i]}');
     }
     buffer.writeln('Com base nas respostas acima, gere um Plano de Desenvolvimento Individual (PDI) completo e personalizado, '
@@ -99,11 +101,9 @@ class MyChatState extends State<MyChat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Gerador de PDI'),
-      ),
       body: SafeArea(
         child: Chat(
+          theme: ChatTheme.fromThemeData(Theme.of(context)),
           chatController: _chatController,
           currentUserId: _humanUser,
           onMessageSend: (text) {
@@ -130,7 +130,7 @@ class MyChatState extends State<MyChat> {
 
               Gemini.instance.prompt(parts: [
                 Part.text(prompt),
-              ]).then((value) {
+              ]).then((value) async {
                 final output = value?.output ?? '';
                 if (output.isNotEmpty) {
                   _chatController.insertMessage(
@@ -140,10 +140,24 @@ class MyChatState extends State<MyChat> {
                       text: output
                     )
                   );
+                  final pdi = Pdi(
+                    id: Uuid().v4(),
+                    prompt: prompt,
+                    resposta: output,
+                    criadoEm: DateTime.now(),
+                  );
+
+                  final box = Hive.box<Pdi>('pdis');
+                  await box.add(pdi);
                 }
-                print(value?.output);
               }).catchError((e) {
-                print('error $e');
+                _chatController.insertMessage(
+                  TextMessage(
+                    id: Uuid().v4(),
+                    authorId: _botUser,
+                    text: 'Houve um erro na geração do PDI. Tente novamente mais tarde.'
+                  )
+                );
               });
             }
           },
