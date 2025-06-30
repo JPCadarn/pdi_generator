@@ -14,13 +14,12 @@ flowchart TD
     C --> E[Fim das perguntas]
     E --> F[Bot: Gerando seu plano...]
     F --> G[Gemini gera PDI]
-    G --> H[PDI é salvo localmente Hive]
+    G --> H[PDI é salvo localmente]
     H --> I[Usuário acessa menu Histórico]
     I --> J[Visualiza PDIs salvos]
 ````
 
 ## Análise de usabilidade
-# Análise de Usabilidade
 
 ### 1. Navegação e Fluxo de Usuário
 
